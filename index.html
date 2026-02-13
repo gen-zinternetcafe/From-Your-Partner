@@ -9,7 +9,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,6 +18,7 @@ body {
     background: #FF1E56;
 }
 
+/* Wave gradient background */
 body::before {
     content: "";
     position: absolute;
@@ -30,7 +31,6 @@ body::before {
     opacity: 0.85;
     animation: waveGradient 3s ease-in-out infinite alternate;
 }
-
 @keyframes waveGradient {
     0% { background-position: 0% 50%; transform: rotate(0deg); }
     25% { background-position: 50% 50%; transform: rotate(2deg); }
@@ -39,13 +39,14 @@ body::before {
     100% { background-position: 0% 50%; transform: rotate(0deg); }
 }
 
+/* Glassmorphic card */
 #content {
     position: relative;
     z-index: 2;
     width: 90%;
-    max-width: 500px;
-    max-height: 80vh;
-    padding: 30px 25px;
+    max-width: 600px;
+    max-height: 85vh;
+    padding: 40px 30px;
     text-align: center;
     border-radius: 30px;
     background: rgba(255,255,255,0.15);
@@ -64,8 +65,9 @@ body::before {
     100% { transform: translateY(0) scale(0.98); }
 }
 
+/* Heading */
 #question {
-    font-size: 36px;
+    font-size: 2.5rem;
     font-weight: 800;
     color: #ffffff;
     font-family: 'Sacramento', cursive;
@@ -75,10 +77,11 @@ body::before {
     position: relative;
 }
 
+/* Button */
 #viewButton {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 1.2rem;
     padding: 16px 50px;
     border-radius: 50px;
     border: none;
@@ -95,11 +98,13 @@ body::before {
     box-shadow: 0 18px 45px rgba(255,30,86,0.5);
 }
 
+/* Message */
 #message {
     margin-top: 20px;
     font-weight: 600;
     color: #ffffff;
-    font-size: 18px;
+    font-size: 1.1rem;
+    line-height: 1.5;
     min-height: 24px;
     max-height: 50vh;
     overflow-y: auto;
@@ -110,7 +115,6 @@ body::before {
     text-shadow: 0 2px 5px rgba(0,0,0,0.2);
     white-space: pre-line;
 }
-
 #message::-webkit-scrollbar {
     width: 8px;
 }
@@ -122,6 +126,7 @@ body::before {
     background: transparent;
 }
 
+/* Falling elements */
 .falling {
     position: fixed;
     top: -60px;
@@ -130,36 +135,9 @@ body::before {
     opacity: 0.85;
     animation: fall linear infinite;
 }
-
-.heart {
-    background-image: url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 29.6">\
-<path fill="%23FF1E56" d="M16 29.6c-1-.6-21-12.6-16-20C5.7 5.6 10.3 4 16 11c5.7-7 10.3-5.4 16-2.6 5 7.4-15 19.6-16 20z"/>\
-</svg>');
-    width: 30px;
-    height: 30px;
-}
-
-.petal {
-    background-image: url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">\
-<path fill="%23FF8CC1" d="M16 0c5 5 10 15 0 32-10-17-5-27 0-32z"/>\
-</svg>');
-    width: 20px;
-    height: 20px;
-    opacity: 0.7;
-}
-
-.star {
-    background-image: url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">\
-<path fill="%23fffacd" d="M16 0 L20 12 H32 L22 20 L26 32 L16 24 L6 32 L10 20 L0 12 H12 Z"/>\
-</svg>');
-    width: 15px;
-    height: 15px;
-    opacity: 0.6;
-}
-
+.heart { width: 30px; height: 30px; }
+.petal { width: 20px; height: 20px; opacity: 0.7; }
+.star { width: 15px; height: 15px; opacity: 0.6; }
 @keyframes fall {
     0% { transform: translateY(-120vh) rotate(0deg) translateX(0); }
     100% { transform: translateY(120vh) rotate(360deg) translateX(50px); }
@@ -172,11 +150,25 @@ body::before {
     width: 100%;
     text-align: center;
     color: rgba(255, 255, 255, 0.7);
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 500;
     z-index: 10;
     text-shadow: 0 1px 3px rgba(0,0,0,0.2);
     pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #question { font-size: 2rem; }
+    #viewButton { font-size: 1rem; padding: 14px 40px; }
+    #message { font-size: 1rem; }
+    #content { padding: 30px 20px; max-height: 85vh; }
+}
+@media (max-width: 480px) {
+    #question { font-size: 1.6rem; }
+    #viewButton { font-size: 0.95rem; padding: 12px 35px; }
+    #message { font-size: 0.95rem; }
+    #content { padding: 25px 15px; max-height: 80vh; }
 }
 </style>
 </head>
