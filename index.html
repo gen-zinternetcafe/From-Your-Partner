@@ -129,13 +129,52 @@ body::before {
 }
 
 /* Falling animations */
-.falling { position: fixed; top: -60px; pointer-events: none; z-index: 5; opacity: 0.85; animation: fall linear infinite; }
-.heart { width: 30px; height: 30px; }
-.petal { width: 20px; height: 20px; opacity: 0.7; }
-.star { width: 15px; height: 15px; opacity: 0.6; }
+.falling {
+    position: fixed;
+    top: -60px;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0.85;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+.heart {
+    width: 30px;
+    height: 30px;
+    background-image: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 29.6">\
+<path fill="%23FF1E56" d="M16 29.6c-1-.6-21-12.6-16-20C5.7 5.6 10.3 4 16 11c5.7-7 10.3-5.4 16-2.6 5 7.4-15 19.6-16 20z"/>\
+</svg>');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.petal {
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+    background-image: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">\
+<path fill="%23FF8CC1" d="M16 0c5 5 10 15 0 32-10-17-5-27 0-32z"/>\
+</svg>');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.star {
+    width: 15px;
+    height: 15px;
+    opacity: 0.6;
+    background-image: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">\
+<path fill="%23fffacd" d="M16 0 L20 12 H32 L22 20 L26 32 L16 24 L6 32 L10 20 L0 12 H12 Z"/>\
+</svg>');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 @keyframes fall {
-    0% { transform: translateY(-120vh) rotate(0deg) translateX(0); }
-    100% { transform: translateY(120vh) rotate(360deg) translateX(50px); }
+    0% { transform: translateY(-120vh) rotate(0deg); }
+    100% { transform: translateY(120vh) rotate(360deg); }
 }
 
 /* Footer */
