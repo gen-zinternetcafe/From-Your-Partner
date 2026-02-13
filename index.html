@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Valentine UI - Scrollable Message</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Sacramento&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -18,7 +19,7 @@ body {
     background: #FF1E56;
 }
 
-/* Wave gradient background */
+/* Background gradient */
 body::before {
     content: "";
     position: absolute;
@@ -39,11 +40,11 @@ body::before {
     100% { background-position: 0% 50%; transform: rotate(0deg); }
 }
 
-/* Glassmorphic card */
+/* Main card */
 #content {
     position: relative;
     z-index: 2;
-    width: 90%;
+    width: 95%;
     max-width: 600px;
     max-height: 85vh;
     padding: 40px 30px;
@@ -52,11 +53,11 @@ body::before {
     background: rgba(255,255,255,0.15);
     backdrop-filter: blur(20px);
     box-shadow: 0 20px 60px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.3);
-    animation: cardFloat 6s ease-in-out infinite alternate;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     overflow: hidden;
+    animation: cardFloat 6s ease-in-out infinite alternate;
 }
 
 @keyframes cardFloat {
@@ -67,7 +68,7 @@ body::before {
 
 /* Heading */
 #question {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 800;
     color: #ffffff;
     font-family: 'Sacramento', cursive;
@@ -81,7 +82,7 @@ body::before {
 #viewButton {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     padding: 16px 50px;
     border-radius: 50px;
     border: none;
@@ -103,18 +104,19 @@ body::before {
     margin-top: 20px;
     font-weight: 600;
     color: #ffffff;
-    font-size: 1.1rem;
-    line-height: 1.5;
-    min-height: 24px;
-    max-height: 50vh;
+    font-size: 1.2rem;
+    line-height: 1.6;
     overflow-y: auto;
     text-align: left;
-    padding-right: 10px;
+    padding: 10px;
     position: relative;
     z-index: 3;
     text-shadow: 0 2px 5px rgba(0,0,0,0.2);
     white-space: pre-line;
+    flex: 1 1 auto;
 }
+
+/* Scrollbar */
 #message::-webkit-scrollbar {
     width: 8px;
 }
@@ -126,15 +128,8 @@ body::before {
     background: transparent;
 }
 
-/* Falling elements */
-.falling {
-    position: fixed;
-    top: -60px;
-    pointer-events: none;
-    z-index: 5;
-    opacity: 0.85;
-    animation: fall linear infinite;
-}
+/* Falling animations */
+.falling { position: fixed; top: -60px; pointer-events: none; z-index: 5; opacity: 0.85; animation: fall linear infinite; }
 .heart { width: 30px; height: 30px; }
 .petal { width: 20px; height: 20px; opacity: 0.7; }
 .star { width: 15px; height: 15px; opacity: 0.6; }
@@ -159,15 +154,15 @@ body::before {
 
 /* Responsive */
 @media (max-width: 768px) {
-    #question { font-size: 2rem; }
-    #viewButton { font-size: 1rem; padding: 14px 40px; }
-    #message { font-size: 1rem; }
+    #question { font-size: 2.5rem; }
+    #viewButton { font-size: 1.2rem; padding: 14px 40px; }
+    #message { font-size: 1.1rem; }
     #content { padding: 30px 20px; max-height: 85vh; }
 }
 @media (max-width: 480px) {
-    #question { font-size: 1.6rem; }
-    #viewButton { font-size: 0.95rem; padding: 12px 35px; }
-    #message { font-size: 0.95rem; }
+    #question { font-size: 2rem; }
+    #viewButton { font-size: 1rem; padding: 12px 30px; }
+    #message { font-size: 1rem; }
     #content { padding: 25px 15px; max-height: 80vh; }
 }
 </style>
