@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine UI - Scrollable Message</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Sacramento&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    background: #FF1E56;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: linear-gradient(135deg, #FF1E56, #FF8CC1);
+    background-size: 400% 400%;
+    border-radius: 50%;
+    z-index: 0;
+    opacity: 0.85;
+    animation: waveGradient 3s ease-in-out infinite alternate;
+}
+
+@keyframes waveGradient {
+    0% { background-position: 0% 50%; transform: rotate(0deg); }
+    25% { background-position: 50% 50%; transform: rotate(2deg); }
+    50% { background-position: 100% 50%; transform: rotate(0deg); }
+    75% { background-position: 50% 50%; transform: rotate(-2deg); }
+    100% { background-position: 0% 50%; transform: rotate(0deg); }
+}
+
+#content {
+    position: relative;
+    z-index: 2;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    padding: 30px 25px;
+    text-align: center;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.3);
+    animation: cardFloat 6s ease-in-out infinite alternate;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+@keyframes cardFloat {
+    0% { transform: translateY(0) scale(0.98); }
+    50% { transform: translateY(-8px) scale(1); }
+    100% { transform: translateY(0) scale(0.98); }
+}
+
+#question {
+    font-size: 36px;
+    font-weight: 800;
+    color: #ffffff;
+    font-family: 'Sacramento', cursive;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 10px rgba(255,255,255,0.8), 0 4px 20px rgba(255,0,86,0.3);
+    z-index: 3;
+    position: relative;
+}
+
+#viewButton {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 16px 50px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(135deg, #FF1E56, #FF8CC1);
+    box-shadow: 0 12px 30px rgba(255,30,86,0.35);
+    transition: all 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    position: relative;
+    z-index: 3;
+}
+#viewButton:hover {
+    transform: translateY(-4px) scale(1.06);
+    box-shadow: 0 18px 45px rgba(255,30,86,0.5);
+}
+
+#message {
+    margin-top: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 18px;
+    min-height: 24px;
+    max-height: 50vh;
+    overflow-y: auto;
+    text-align: left;
+    padding-right: 10px;
+    position: relative;
+    z-index: 3;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    white-space: pre-line;
+}
+
+#message::-webkit-scrollbar {
+    width: 8px;
+}
+#message::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.5);
+    border-radius: 4px;
+}
+#message::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.falling {
+    position: fixed;
+    top: -60px;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0.85;
+    animation: fall linear infinite;
+}
+
+.heart {
+    background-image: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 29.6">\
+<path fill="%23FF1E56" d="M16 29.6c-1-.6-21-12.6-16-20C5.7 5.6 10.3 4 16 11c5.7-7 10.3-5.4 16-2.6 5 7.4-15 19.6-16 20z"/>\
+</svg>');
+    width: 30px;
+    height: 30px;
+}
+
+.petal {
+    background-image: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">\
+<path fill="%23FF8CC1" d="M16 0c5 5 10 15 0 32-10-17-5-27 0-32z"/>\
+</svg>');
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+}
+
+.star {
+    background-image: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">\
+<path fill="%23fffacd" d="M16 0 L20 12 H32 L22 20 L26 32 L16 24 L6 32 L10 20 L0 12 H12 Z"/>\
+</svg>');
+    width: 15px;
+    height: 15px;
+    opacity: 0.6;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-120vh) rotate(0deg) translateX(0); }
+    100% { transform: translateY(120vh) rotate(360deg) translateX(50px); }
+}
+
+/* Footer */
+#footer {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    font-weight: 500;
+    z-index: 10;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    pointer-events: none;
+}
+</style>
+</head>
+<body>
+
+<div id="content">
+    <h2 id="question">Happy Valentine's Day! 💖</h2>
+    <button id="viewButton">View Long Message</button>
+    <p id="message"></p>
+</div>
+
+<div id="footer">Created by © 2026 John Raymar Galoyo</div>
+
+<script>
+const viewButton = document.getElementById('viewButton');
+const message = document.getElementById('message');
+const question = document.getElementById('question');
+
+viewButton.addEventListener('click', function() {
+    question.innerText = "Here's my special message for you 💌";
+    message.innerText = `My dearest Realyn Dela Cruz,
+
+Happy Valentine’s Day, my love! Today is so special because it’s our very first Valentine’s Day together as a Partner couple. My love, I’m so sorry for being late with your gift today. I really, really wanted to make it special, but the delivery was delayed in my area. I had hoped to surprise you with chocolates and flowers, but unfortunately, they didn’t arrive on time. With the rainy day, it arrived later than I had hoped, and I truly feel sorry for that.
+
+Even though the gift didn’t reach you exactly when I wanted, my heart is always with you, and my love for you is always on time. You are my heart, my joy, and my everything. I hope you feel all the love and happiness I’m sending you today not just through the gift, but in every word, every thought, and every moment we share.
+
+Thank you for being my amazing wife, my partner, and my best friend. I promise to make up for this little delay with all the love, laughter, and sweet surprises I can give. You are truly my everything, and I am so grateful to share this life and this special day with you.
+
+I love you Always Mylovee, Realyn 💖🌹`;
+
+    // Falling hearts
+    for (let i = 0; i < 50; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'falling heart';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.animationDuration = (Math.random() * 4 + 3) + 's';
+        heart.style.animationDelay = Math.random() * 2 + 's';
+        document.body.appendChild(heart);
+    }
+
+    // Falling petals
+    for (let i = 0; i < 40; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'falling petal';
+        petal.style.left = Math.random() * window.innerWidth + 'px';
+        petal.style.animationDuration = (Math.random() * 4 + 3) + 's';
+        petal.style.animationDelay = Math.random() * 2 + 's';
+        document.body.appendChild(petal);
+    }
+
+    // Falling stars
+    for (let i = 0; i < 30; i++) {
+        const star = document.createElement('div');
+        star.className = 'falling star';
+        star.style.left = Math.random() * window.innerWidth + 'px';
+        star.style.animationDuration = (Math.random() * 5 + 3) + 's';
+        star.style.animationDelay = Math.random() * 2 + 's';
+        document.body.appendChild(star);
+    }
+
+    viewButton.style.display = 'none';
+});
+</script>
+</body>
+</html>
